@@ -1,4 +1,4 @@
-package com.trust.id.network;
+package com.trust.id2.network;
 
 import com.google.gson.GsonBuilder;
 

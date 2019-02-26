@@ -1,4 +1,4 @@
-package com.trust.id.network.request;
+package com.trust.id2.network.req;
 
 import com.google.gson.annotations.SerializedName;
 

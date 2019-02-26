@@ -1,14 +1,16 @@
-package com.trust.id;
+package com.trust.id2;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+import android.view.View;
 
-import com.trust.id.ui.result.ResultActivity;
-import com.trust.id.utils.AuthStateManager;
+
+import com.trust.id2.Utils.AuthStateManager;
 
 import net.openid.appauth.AppAuthConfiguration;
 import net.openid.appauth.AuthState;
@@ -34,8 +36,8 @@ public class Oauth2Helper {
     private static final String REDIRECT_URI = "jumpitt.app://auth.id";
 
     private static final String BASE_URL = "https://api.autentia.id/oxauth/restv1/";
-    private static final String CLIENT_ID = "@!3011.6F0A.B190.8457!0001!294E.B0CD!0008!40E4.A0F9.9E5E.9E81";
-    private static final String CLIENT_SECRET = "Eo4q2dqdlFQ6yxZP4zme3kHw";
+    private static final String CLIENT_ID = "@!3011.6F0A.B190.8457!0001!294E.B0CD!0008!145D.F522.FFC3.439E"; //"@!3011.6F0A.B190.8457!0001!294E.B0CD!0008!40E4.A0F9.9E5E.9E81";
+    private static final String CLIENT_SECRET = "P2qr7PbPR3QxMMRIJwxqWO81";//"Eo4q2dqdlFQ6yxZP4zme3kHw";
 
     private static Oauth2Helper instance;
     private static AuthorizationService mAuthService;
@@ -46,7 +48,7 @@ public class Oauth2Helper {
     /**
      * Singleton initialization. Must be called on Application class
      */
-    static void init(Context context) {
+  public  static void init(Context context) {
         instance = new Oauth2Helper();
 
         mManager = AuthStateManager.getInstance(context);
@@ -111,8 +113,9 @@ public class Oauth2Helper {
      *
      * @param context
      */
-    public void doAuthorization(Context context) {
-        Intent pendingIntent = new Intent(context, ResultActivity.class);
+    public void doAuthorization(Context context,Activity activity) {
+
+        Intent pendingIntent = new Intent(context, activity.getClass());
 
         mAuthService.performAuthorizationRequest(
                 getAuthorizationRequest(),

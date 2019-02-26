@@ -2,15 +2,16 @@ package com.trust.id.ui.login;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.trust.id.R;
+import com.trust.id.ui.result.ResultActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
@@ -22,7 +23,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     Button btnLogin;
     @BindView(R.id.btnLoginId)
     Button btnLoginId;
-
+    @BindView(R.id.btnRegisterId)
+    Button btnRegisterId;
     private LoginPresenter mPresenter;
 
     @Override
@@ -30,16 +32,18 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mPresenter = new LoginPresenter(this);
+        mPresenter = new LoginPresenter(this, new ResultActivity());
         mPresenter.onCreate();
-        btnLoginId.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.authorizationWasRequested(LoginActivity.this);
-            }
-        });
+
     }
 
+    @OnClick(R.id.btnLoginId)
+    void onLoginIdPressed() {
+        mPresenter.authorizationWasRequested(LoginActivity.this);
+    }
+
+    @OnClick(R.id.btnRegisterId)
+    void onRegisterPressed() { mPresenter.authorizationWasRequested(LoginActivity.this); }
 
     @Override
     public void showWelcome() {
@@ -56,4 +60,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
     }
+
+    @Override
+    protected void onDestroy() {
+        mPresenter.onDestroy();
+        super.onDestroy();
+    }
+
+
 }

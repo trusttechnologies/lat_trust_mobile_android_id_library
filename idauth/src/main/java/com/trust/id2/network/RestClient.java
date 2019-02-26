@@ -1,4 +1,4 @@
-package com.trust.id.network;
+package com.trust.id2.network;
 
 import com.google.gson.GsonBuilder;
 
@@ -10,7 +10,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestClient {
-    //private static final String BASE_URL = "http://35.193.102.158/";
     private static final String BASE_URL = "https://api.autentia.id/profile/";
     private static final int CONNECT_TIMEOUT = 30 * 4;
     private static final int WRITE_TIMEOUT = 30 * 4;

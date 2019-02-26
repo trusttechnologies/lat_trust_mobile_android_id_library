@@ -1,6 +1,7 @@
-package com.trust.id.network;
+package com.trust.id2.network;
 
-import com.trust.id.model.Profile;
+
+import com.trust.id2.model.Profile;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

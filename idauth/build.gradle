@@ -1,5 +1,45 @@
 apply plugin: 'com.android.library'
 
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
+
+    }
+}
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+
+ext {
+    bintrayRepo = 'trust'
+    bintrayName = 'trustlock'
+
+    publishedGroupId = 'com.trust.id'
+    libraryName = 'idauth'
+    artifact = 'trustlocklibidauthrary'
+
+    libraryDescription = 'Library for '
+
+    siteUrl = 'https://github.com/trusttechnologies/lat_trust_mobile_android_trust-lock_library'
+    gitUrl = 'https://github.com/trusttechnologies/lat_trust_mobile_android_trust-lock_library.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'fcaro'
+    developerName = 'Felipe Caro'
+    developerEmail = 'fcaro@trust.lat'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 android {
     compileSdkVersion 28
 
@@ -21,8 +61,27 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 
 }
+
+ext {
+    supportVersion = "28.0.0"
+    constraintLayoutVersion = "1.1.3"
+
+    butterknifeVersion = "8.8.1"
+
+    hawkVersion = "2.0.1"
+
+    retrofitVersion = "2.4.0"
+    okhttpVersion = "3.10.0"
+
+    materialDialogsVersion = "0.9.6.0"
+}
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -31,4 +90,126 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //---------NETWORKING------------------------
+    // -- OKHTTP
+    implementation "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}"
+    implementation "com.squareup.okhttp3:okhttp:${okhttpVersion}"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:${okhttpVersion}"
+    // -- RETROFIT
+    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+
+    //--------BUTTERKNIFE-(View/Data Injection)-------------------------
+    implementation "com.jakewharton:butterknife:${butterknifeVersion}"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    annotationProcessor "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
+
+    //--------GLIDE-(Image Load)--------------------------------------
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+
+    //---------STORAGE--------------------
+    implementation 'com.orhanobut:hawk:2.0.1'
+
+    //---------FEEDBACK-----------------------
+    implementation 'com.qhutch.bottomsheetlayout:bottomsheetlayout:0.1.6'
+
+
+    //--------TESTING----------------------------
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+
+
+    implementation 'net.openid:appauth:0.7.1'
+}
+
+
+
+
+
+
+
+
+group = publishedGroupId
+version = libraryVersion
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            packaging 'aar'
+            groupId publishedGroupId
+            artifactId artifact
+
+            name libraryName
+            description libraryDescription
+            url siteUrl
+
+            licenses {
+                license {
+                    name licenseName
+                    url licenseUrl
+                }
+            }
+            developers {
+                developer {
+                    id developerId
+                    name developerName
+                    email developerEmail
+                }
+            }
+            scm {
+                connection gitUrl
+                developerConnection gitUrl
+                url siteUrl
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = bintrayRepo
+        name = bintrayName
+        desc = libraryDescription
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = allLicenses
+        dryRun = false
+        publish = true
+        override = false
+        publicDownloadNumbers = true
+        version {
+            desc = libraryDescription
+        }
+    }
 }

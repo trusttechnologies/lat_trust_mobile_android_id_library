@@ -75,10 +75,6 @@ dependencies {
     //---------FEEDBACK-----------------------
     implementation 'com.qhutch.bottomsheetlayout:bottomsheetlayout:0.1.6'
 
-    //---------FIREBASE-------------------------
-    implementation 'com.google.firebase:firebase-core:16.0.6'
-    implementation 'com.google.firebase:firebase-messaging:17.3.4'
-    //implementation 'com.crashlytics.sdk.android:crashlytics:2.9.7'
 
     //--------TESTING----------------------------
     testImplementation 'junit:junit:4.12'
@@ -88,6 +84,12 @@ dependencies {
 
 
     implementation 'net.openid:appauth:0.7.1'
+    implementation project(':idauth')
+
+
+    //---------FEEDBACK-----------------------
+    api 'com.andrognito.flashbar:flashbar:1.0.2'
+    api 'com.afollestad.material-dialogs:core:0.9.6.0'
 
 
 }

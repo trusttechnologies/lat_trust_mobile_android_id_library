@@ -3,12 +3,9 @@ package com.trust.id.ui.result;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.trust.id.model.Profile;
 import com.trust.id.ui.home.HomeActivity;
-import com.trust.id.ui.home.HomePresenter;
 import com.trust.id.ui.login.LoginActivity;
-
-import java.util.Map;
+import com.trust.id.ui.register.RegisterActivity;
 
 public class ResultRouter implements ResultContract.Router {
     public static final int REGISTER_REQUEST = 1000;
@@ -37,12 +34,12 @@ public class ResultRouter implements ResultContract.Router {
 
     @Override
     public void goToRegister() {
-        Intent intent = new Intent(mActivity, HomeActivity.class);
+        Intent intent = new Intent(mActivity, RegisterActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         mActivity.startActivity(intent);
         mActivity.finishAffinity();
-    //    Intent intent = new Intent(mActivity, RegisterActivity.class);
-    //    mActivity.startActivityForResult(intent, REGISTER_REQUEST);
+        //    Intent intent = new Intent(mActivity, RegisterActivity.class);
+        //    mActivity.startActivityForResult(intent, REGISTER_REQUEST);
     }
 
 }

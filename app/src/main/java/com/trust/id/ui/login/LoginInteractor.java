@@ -1,9 +1,7 @@
 package com.trust.id.ui.login;
 
-import android.text.TextUtils;
-
 import com.orhanobut.hawk.Hawk;
-import com.trust.id.network.RestClientOauth;
+import com.trust.id2.network.RestClientOauth;
 
 import java.util.Map;
 
@@ -27,7 +25,6 @@ public class LoginInteractor implements LoginContract.Interactor {
                 public void onResponse(Call<Object> call, Response<Object> response) {
                     mOutputs.logoutSuccess();
                 }
-
                 @Override
                 public void onFailure(Call<Object> call, Throwable t) {
                     mOutputs.logoutSuccess();

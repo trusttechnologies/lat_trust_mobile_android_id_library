@@ -47,7 +47,7 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/background_radius"
             android:text="Sign in"
-            android:textColor="@color/text" />
+            android:textColor="@color/colorPrimary" />
         <Button
             android:id="@+id/btnLoginId"
             android:layout_width="match_parent"
@@ -55,7 +55,15 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/background_radius_id"
             android:text="Sign in with id"
-            android:textColor="@color/text" />
+            android:textColor="@color/colorPrimary" />
+        <Button
+            android:id="@+id/btnRegisterId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/background_radius_id"
+            android:text="register with id"
+            android:textColor="@color/colorPrimary" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

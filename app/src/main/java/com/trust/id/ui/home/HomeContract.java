@@ -1,40 +1,30 @@
 package com.trust.id.ui.home;
 
-import com.trust.id.model.Profile;
+
+import com.trust.id2.model.Profile;
 
 import java.util.Map;
 
 public interface HomeContract {
     interface View {
 
-        void displayProfileData(String name, String family, String middle, String birthday, String gender, String birthdayServer, String nationality);
+        void displayProfileData(Profile profile);
 
-        void showDatePickerDialog(int year, int month, int day);
+        void showLoading(String message);
 
-        void showLoadingDialog();
+        void dismissLoading();
 
-        void dismissLoadingDialog();
-
-        void showNamesError(boolean isError);
-
-        void showFamilyNameError(boolean isError);
-
-        void showMiddleNameError(boolean isError);
-
-        void showBirthDayError(boolean isError);
-
-        void showNatError(boolean isError);
     }
 
     interface Presenter {
 
         void onViewCreated();
 
-        void birthdayButtonWasPressed();
+        void logoutButtonWasPressed();
 
-        void onNextButtonPressed(String names, String familyName, String middleName, String birthday, int genderId, String selectedNat);
+        void logoutSuccess();
 
-        void logoutWasRequested();
+        void logoutFailure();
     }
 
     interface Interactor {
@@ -43,20 +33,21 @@ public interface HomeContract {
 
         Profile getProfileData();
 
-        void doProfileUpdate(String accessToken, String names, String familyName, String middleName, String birthday, String gender, String nationality);
-
-        void setIncomplete();
     }
 
     interface InteractorOutput {
 
-        void onProfileUpdated();
+        void onLogoutSuccess();
 
-        void onProfileUpdateFail();
+        void onLogoutError();
+
+        void onLogoutFailure();
     }
 
     interface Router {
 
         void backToRegister(boolean isSuccess);
+
+        void goToLogin();
     }
 }

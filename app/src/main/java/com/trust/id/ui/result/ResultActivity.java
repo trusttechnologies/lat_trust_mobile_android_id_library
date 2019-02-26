@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.trust.id.R;
 
 public class ResultActivity extends AppCompatActivity implements ResultContract.View  {
@@ -62,10 +61,10 @@ public class ResultActivity extends AppCompatActivity implements ResultContract.
 
     @Override
     public void onRequestFirebaseToken() {
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(ResultActivity.this, instanceIdResult -> {
+       /* FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(ResultActivity.this, instanceIdResult -> {
             String newToken = instanceIdResult.getToken();
             mPresenter.onFirebaseTokenObtained(newToken);
-        });
+        });*/
     }
 
     @Override

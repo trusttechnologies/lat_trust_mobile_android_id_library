@@ -1,4 +1,4 @@
-package com.trust.id.network.request;
+package com.trust.id2.network.req;
 
 public class FirebaseBody {
     private Data data;

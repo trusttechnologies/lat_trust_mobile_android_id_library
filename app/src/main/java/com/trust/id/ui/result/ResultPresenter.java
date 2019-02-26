@@ -3,8 +3,8 @@ package com.trust.id.ui.result;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.trust.id.Oauth2Helper;
-import com.trust.id.model.Profile;
+import com.trust.id2.Oauth2Helper;
+import com.trust.id2.model.Profile;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -54,7 +54,6 @@ public class ResultPresenter implements ResultContract.Presenter,ResultContract.
             public void onSuccess(String accessToken, String idToken) {
                 mInteractor.getUserInfo(accessToken);
             }
-
             @Override
             public void onError(String error) {
                 mView.dismissLoading();
@@ -119,7 +118,7 @@ public class ResultPresenter implements ResultContract.Presenter,ResultContract.
         if (profile.missingData()) {
             mRouter.goToRegister();
         } else {
-            mRouter.goToRegister();
+            mRouter.goToMain();
             mView.showUser(WordUtils.capitalize(profile.getFullName().toLowerCase(), ' '), profile.isMale());
         }
         mView.dismissLoading();

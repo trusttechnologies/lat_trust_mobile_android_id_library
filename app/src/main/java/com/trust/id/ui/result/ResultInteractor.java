@@ -1,10 +1,13 @@
 package com.trust.id.ui.result;
 
+import android.util.Log;
+
 import com.orhanobut.hawk.Hawk;
-import com.trust.id.model.Profile;
-import com.trust.id.network.RestClient;
-import com.trust.id.network.RestClientOauth;
-import com.trust.id.network.request.FirebaseUpdateBody;
+import com.trust.id2.Utils.Utils;
+import com.trust.id2.model.Profile;
+import com.trust.id2.network.RestClient;
+import com.trust.id2.network.RestClientOauth;
+import com.trust.id2.network.req.FirebaseUpdateBody;
 
 import java.util.Map;
 
@@ -28,7 +31,7 @@ public class ResultInteractor implements ResultContract.Interactor {
             public void onResponse(Call<Profile> call, Response<Profile> response) {
                 if (response.isSuccessful()) {
                     Profile profile = response.body();
-                    Hawk.put("PROFILE", profile);
+                    Hawk.put(Utils.PROFILE, profile);
                     mOutputs.onProfileLoaded(profile);
                 } else {
                     mOutputs.onProfileDownloadFails();
@@ -47,7 +50,7 @@ public class ResultInteractor implements ResultContract.Interactor {
     @Override
     public void updateFirebaseToken(String accessToken, final String newToken) {
 
-        Profile profile = Hawk.get("PROFILE");
+        Profile profile = Hawk.get(Utils.PROFILE);
 
         FirebaseUpdateBody.Profile profileAttribute = new FirebaseUpdateBody.Profile(newToken);
         Call<Void> updateCall = RestClient.get().updateFirebaseToken("Bearer " + accessToken, profile.getProfileId(), new FirebaseUpdateBody(profileAttribute));

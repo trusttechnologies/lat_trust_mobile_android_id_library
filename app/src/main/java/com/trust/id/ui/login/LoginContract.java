@@ -1,5 +1,6 @@
 package com.trust.id.ui.login;
 
+import android.app.Activity;
 import android.content.Context;
 
 import java.util.Map;
@@ -18,6 +19,8 @@ public interface LoginContract {
         void authorizationWasRequested(Context context);
 
         void onDestroy();
+
+        void register();
     }
 
     interface Interactor {
@@ -38,5 +41,6 @@ public interface LoginContract {
 
     interface Router {
         void goToMain();
+        void goToRegister();
     }
 }

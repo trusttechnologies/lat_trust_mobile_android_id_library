@@ -2,6 +2,9 @@ package com.trust.id2.model;
 
 
 
+import com.google.gson.Gson;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -11,12 +14,12 @@ import java.util.Locale;
  * "country": "CL"
  * },
  * "sub": "fgY18e5JI49hV5YcpE9c9e_XhOU3b5WMME9138j2nBk",
- * "name": "JAVIER ANDRÉS",
+ * "name": "JAVIER ANDRES",
  * "inum": "2438b6e2-0441-4526-a65f-afb6577aa0a3",
  * "user_name": "2438b6e2-0441-4526-a65f-afb6577aa0a3",
  * "birthdate": 596246400000,
  * "gender": "male",
- * "given_name": "JAVIER ANDRÉS",
+ * "given_name": "JAVIER ANDRES",
  * "middle_name": "ALVARADO",
  * "family_name": "LETELIER",
  * "phone_number_verified": false,
@@ -25,8 +28,8 @@ import java.util.Locale;
  * }
  */
 public class Profile {
-    /*
-    public static final String dummy = "{\"address\":{\"country\":\"CL\"},\"sub\":\"s9vH7pZppj1niIdHK8Xdl9Viy0IdnVvsnAplN2KJHVM\",\"birthdate\":\"19890712000000.000Z\",\"gender\":\"male\",\"profile\":\"{ \\\"credentials\\\": [{ \\\"sub\\\": \\\"17162369-3\\\", \\\"iss\\\": \\\"CL_REGISTROCIVIL\\\"}]}\",\"name\":\"FELIPE ANDRÉS\",\"given_name\":\"FELIPE ANDRÉS\",\"middle_name\":\"TORRES\",\"family_name\":\"NAVARRO\"}";
+
+    public static final String dummy = "{\"address\":{\"country\":\"CL\"},\"sub\":\"s9vH7pZppj1niIdHK8Xdl9Viy0IdnVvsnAplN2KJHVM\",\"birthdate\":\"19890712000000.000Z\",\"gender\":\"male\",\"profile\":\"{ \\\"credentials\\\": [{ \\\"sub\\\": \\\"17162369-3\\\", \\\"iss\\\": \\\"CL_REGISTROCIVIL\\\"}]}\",\"name\":\"FELIPE ANDRES\",\"given_name\":\"FELIPE ANDRES\",\"middle_name\":\"TORRES\",\"family_name\":\"NAVARRO\"}";
     @SerializedName("birthdate")
     private String birthdate;
     @SerializedName("gender")
@@ -137,5 +140,5 @@ public class Profile {
                 || getGender() == null
                 || getAddress() == null || getAddress().getCountry() == null || getAddress().getCountry().isEmpty();
     }
-    */
+
 }

@@ -1,4 +1,4 @@
-package com.trust.id.utils;
+package com.trust.id2.Utils;
 
 
 import android.content.Context;

@@ -2,7 +2,7 @@ package com.trust.id.ui.result;
 
 import android.content.Intent;
 
-import com.trust.id.model.Profile;
+import com.trust.id2.model.Profile;
 
 import java.util.Map;
 
