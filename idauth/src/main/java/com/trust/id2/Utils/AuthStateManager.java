@@ -21,11 +21,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.ReentrantLock;
 
 
-/**
- * An example persistence mechanism for an {@link AuthState} instance.
- * This stores the instance in a shared preferences file, and provides thread-safe access and
- * mutation.
- */
+
 public class AuthStateManager {
 
     private static final AtomicReference<WeakReference<AuthStateManager>> INSTANCE_REF =

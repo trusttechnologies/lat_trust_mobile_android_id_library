@@ -19,16 +19,16 @@ apply plugin: 'com.jfrog.bintray'
 
 ext {
     bintrayRepo = 'trust'
-    bintrayName = 'trustlock'
+    bintrayName = 'id'
 
     publishedGroupId = 'com.trust.id'
     libraryName = 'idauth'
-    artifact = 'trustlocklibidauthrary'
+    artifact = 'idauth'
 
-    libraryDescription = 'Library for '
+    libraryDescription = 'Library in charge of login through id (openID, OAuth2) '
 
-    siteUrl = 'https://github.com/trusttechnologies/lat_trust_mobile_android_trust-lock_library'
-    gitUrl = 'https://github.com/trusttechnologies/lat_trust_mobile_android_trust-lock_library.git'
+    siteUrl = 'https://github.com/trusttechnologies/lat_trust_mobile_android_id_library'
+    gitUrl = 'https://github.com/trusttechnologies/lat_trust_mobile_android_id_library.git'
 
     libraryVersion = '1.0.0'
 
@@ -97,8 +97,8 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:${okhttpVersion}"
     implementation "com.squareup.okhttp3:okhttp-urlconnection:${okhttpVersion}"
     // -- RETROFIT
-    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
-    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    api "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    api "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
 
     //--------BUTTERKNIFE-(View/Data Injection)-------------------------
     implementation "com.jakewharton:butterknife:${butterknifeVersion}"
@@ -115,6 +115,7 @@ dependencies {
     //---------FEEDBACK-----------------------
     implementation 'com.qhutch.bottomsheetlayout:bottomsheetlayout:0.1.6'
 
+    implementation 'net.openid:appauth:0.7.1'
 
     //--------TESTING----------------------------
     testImplementation 'junit:junit:4.12'
@@ -123,7 +124,7 @@ dependencies {
 
 
 
-    implementation 'net.openid:appauth:0.7.1'
+    api 'net.openid:appauth:0.7.1'
 }
 
 
