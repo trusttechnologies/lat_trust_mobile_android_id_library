@@ -45,7 +45,6 @@ public class ResultPresenter implements ResultContract.Presenter,ResultContract.
         }
     }
 
-
     @Override
     public void profileWasUpdated() {
         mView.showLoading();

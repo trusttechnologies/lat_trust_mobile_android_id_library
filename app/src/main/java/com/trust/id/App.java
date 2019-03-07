@@ -11,11 +11,10 @@ public class App extends Application {
         super.onCreate();
         initHawk();
         initAuthService();
+
     }
 
-    private void initAuthService() {
-        Oauth2Helper.init(this);
-    }
+    private void initAuthService() { Oauth2Helper.init(this); }
 
     private void initHawk() {
         Hawk.init(this).build();

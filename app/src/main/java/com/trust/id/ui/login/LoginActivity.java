@@ -56,10 +56,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @Override
-    public void showMessage(String title, String message, boolean isError) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-
-    }
+    public void showMessage(String title, String message, boolean isError) { Toast.makeText(this, message, Toast.LENGTH_SHORT).show(); }
 
     @Override
     protected void onDestroy() {

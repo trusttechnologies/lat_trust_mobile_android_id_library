@@ -1,7 +1,5 @@
 package com.trust.id.ui.result;
 
-import android.util.Log;
-
 import com.orhanobut.hawk.Hawk;
 import com.trust.id2.Utils.Utils;
 import com.trust.id2.model.Profile;

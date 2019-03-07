@@ -48,7 +48,7 @@ public class Oauth2Helper {
     /**
      * Singleton initialization. Must be called on Application class
      */
-  public  static void init(Context context) {
+    public  static void init(Context context) {
         instance = new Oauth2Helper();
 
         mManager = AuthStateManager.getInstance(context);
@@ -111,12 +111,13 @@ public class Oauth2Helper {
     /**
      * Do an AuthorizationRequest expecting an URI response
      *
-     * @param context
+     * @param context the context app
+     * @param activity: activity for result
      */
     public void doAuthorization(Context context,Activity activity) {
 
         Intent pendingIntent = new Intent(context, activity.getClass());
-
+pendingIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mAuthService.performAuthorizationRequest(
                 getAuthorizationRequest(),
                 PendingIntent.getActivity(context, 0, pendingIntent, 0),
