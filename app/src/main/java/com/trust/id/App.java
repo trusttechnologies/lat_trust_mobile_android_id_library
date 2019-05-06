@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.orhanobut.hawk.Hawk;
 import com.trust.id2.Oauth2Helper;
+import com.trust.id2.model.Oauth2Model;
 
 public class App extends Application {
     @Override
@@ -14,7 +15,7 @@ public class App extends Application {
 
     }
 
-    private void initAuthService() { Oauth2Helper.init(this); }
+    private void initAuthService() { Oauth2Helper.init(this);}
 
     private void initHawk() {
         Hawk.init(this).build();
