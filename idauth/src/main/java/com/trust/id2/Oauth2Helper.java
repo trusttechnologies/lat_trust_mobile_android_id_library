@@ -11,7 +11,6 @@ import android.view.View;
 
 
 import com.trust.id2.Utils.AuthStateManager;
-import com.trust.id2.model.Oauth2Model;
 
 import net.openid.appauth.AppAuthConfiguration;
 import net.openid.appauth.AuthState;
@@ -31,24 +30,20 @@ import java.util.Map;
 @SuppressLint("StaticFieldLeak")
 public class Oauth2Helper {
     private static final String TAG = Oauth2Helper.class.getSimpleName();
-    private static final String EXTRA_ACR_KEY = "acr_values";
-
     private static final String SCOPES = "openid uma_protection profile profile.r profile.w address audit.r audit.w";
+    private static final String EXTRA_ACR_KEY = "acr_values";
     private static final String EXTRA_ACR_VALUE = "login_autentiax";
-    private static final String EXTRA_ACR_VALUE_CHANGE_PASSWORD = "update_password_autentiax";
     private static final String REDIRECT_URI = "jumpitt.app://auth.id";
 
     private static final String BASE_URL = "https://api.autentia.id/oxauth/restv1/";
-    private static final String CLIENT_ID = "@!3011.6F0A.B190.8457!0001!294E.B0CD!0008!145D.F522.FFC3.439E";
-    private static final String CLIENT_SECRET = "P2qr7PbPR3QxMMRIJwxqWO81";
+    private static final String CLIENT_ID = "@!3011.6F0A.B190.8457!0001!294E.B0CD!0008!145D.F522.FFC3.439E"; //"@!3011.6F0A.B190.8457!0001!294E.B0CD!0008!40E4.A0F9.9E5E.9E81";
+    private static final String CLIENT_SECRET = "P2qr7PbPR3QxMMRIJwxqWO81";//"Eo4q2dqdlFQ6yxZP4zme3kHw";
 
     private static Oauth2Helper instance;
     private static AuthorizationService mAuthService;
     private static AuthorizationServiceConfiguration mServiceConfiguration;
     private static AuthState mAuthState;
     private static AuthStateManager mManager;
-
-
 
     /**
      * Singleton initialization. Must be called on Application class
@@ -112,29 +107,16 @@ public class Oauth2Helper {
                         .setScope(SCOPES);
         return authRequestBuilder.build();
     }
-    private AuthorizationRequest getAuthorizationRequestChangePassword() {
-        Map<String, String> extraParams = new HashMap<>();
-        extraParams.put(EXTRA_ACR_KEY, EXTRA_ACR_VALUE_CHANGE_PASSWORD);
-        AuthorizationRequest.Builder authRequestBuilder =
-                new AuthorizationRequest.Builder(
-                        mServiceConfiguration,
-                        CLIENT_ID,
-                        ResponseTypeValues.CODE,
-                        Uri.parse(REDIRECT_URI))
-                        .setAdditionalParameters(extraParams)
-                        .setScope(SCOPES);
-        return authRequestBuilder.build();
-    }
+
     /**
      * Do an AuthorizationRequest expecting an URI response
      *
-     * @param context the context app
-     * @param activity: activity for result
+     * @param context
      */
     public void doAuthorization(Context context,Activity activity) {
 
         Intent pendingIntent = new Intent(context, activity.getClass());
-        pendingIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         mAuthService.performAuthorizationRequest(
                 getAuthorizationRequest(),
                 PendingIntent.getActivity(context, 0, pendingIntent, 0),
